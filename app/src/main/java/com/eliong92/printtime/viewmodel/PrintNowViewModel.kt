@@ -2,13 +2,14 @@ package com.eliong92.printtime.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import com.eliong92.printtime.util.IDateUtil
 
-class PrintNowViewModel : ViewModel() {
+class PrintNowViewModel(
+    private val dateUtil: IDateUtil
+) : ViewModel() {
     val currentTime = MutableLiveData<String>()
 
     fun showCurrentTime() {
-        currentTime.value = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+        currentTime.value = dateUtil.getCurrentTime("HH:mm:ss")
     }
 }
